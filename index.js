@@ -1,6 +1,6 @@
-const mapWidth = 1500;
+const mapWidth = 1200;
 const mapHeight = 500;
-const graphWidth = 1500;
+const graphWidth = 1200;
 const graphHeight = 400;
 
 const graphPadding = 50;
@@ -8,7 +8,7 @@ const graphPadding = 50;
 //Define map projection
 var projection = d3.geoAlbersUsa()
                    .translate([mapWidth/2, mapHeight/2])
-                   .scale([1000]);
+                   .scale([5000]);
 
 //Define path generator
 var path = d3.geoPath()
@@ -146,6 +146,7 @@ function drawBarGraph(dataParser, data) {
 //Load in GeoJSON data
 d3.json("data/usroads.json", function(error, usroads) {
   if (error) throw error;
+  
     d3.csv("data/fatalitiesAndCommute.csv", function(fatalitiesAndCommute){
         fatalitiesAndCommute.forEach(d => {
             d.year = +d.year;
@@ -178,6 +179,9 @@ d3.json("data/usroads.json", function(error, usroads) {
                 .attr("height", mapHeight)
             
             majorHighways = topojson.feature(usroads, usroads.objects.roads).features.filter(d => d.properties.type === "Major Highway")
+            majorHighways.forEach((d, i) => {
+                d.id = i;
+            })
             console.log(majorHighways);
             longMajorHighways = majorHighways.filter(d=>d.geometry.coordinates.length > 1);
             console.log(longMajorHighways);
@@ -187,27 +191,58 @@ d3.json("data/usroads.json", function(error, usroads) {
                 .enter().append("path")
                 .attr("d", path)
                 .attr("fill-opacity","0")
-                .style("stroke","#252525")
+                .style("stroke","#000000")
                 .style("stroke-width",1);
+            var store = window.localStorage.getItem("excludedHighways");
+            console.log(store);
+            var excludedHighways = store ? JSON.parse(store) : [];
             map.append("g")
                 .selectAll("path")
-                .data(longMajorHighways)
+                .data(longMajorHighways.filter((d => !excludedHighways.includes(d.id))))
                 .enter().append("path")
                 .attr("d", path)
-                .attr("stroke-width", 2)
-                .attr("class",function(d) { return "roads " + d.properties.type.toLowerCase().split(' ').join('-'); });
+        
+                .attr("class",function(d) { return "roads " + d.properties.type.toLowerCase().split(' ').join('-'); })
+                .on("click", function(d) {
+                    console.log(d);
+                    longMajorHighways;
+                    excludedHighways.push(d.id);
+                    console.log(excludedHighways);
+                    window.localStorage.setItem("excludedHighways", JSON.stringify(excludedHighways));
+                    map.selectAll(".major-highway")
+                        .data(longMajorHighways.filter((d => !excludedHighways.includes(d.id))))
+                        .attr("d", path);
+                    
+                    
+                });
+        
+            d3.select("body").append("button")
+                .text("undo")
+                .on("click", function() {
+                    console.log(excludedHighways);
+                
+                    excludedHighways.pop();
+                    console.log(excludedHighways);
+                
+                    window.localStorage.setItem("excludedHighways", JSON.stringify(excludedHighways));
+                    
+                    map.selectAll(".major-highway")
+                        .data(longMajorHighways.filter((d => !excludedHighways.includes(d.id))))
+                        .attr("d", path);
+                })
 
-//1.5 Make map zoomable (from book chapter 14 example 16)
-            /*var zooming = function(d) {
+//1.5 Make map draggable (from book chapter 14 example 16)
+//Not intended to be part of the final project, but for purposes of eliminating non-interstates from the dataset I was able to use.
+            var zooming = function(d) {
 
 				//Log out d3.event.transform, so you can see all the goodies inside
 				//console.log(d3.event.transform);
 
 				//New offset array
-				var offset = [d3.event.transform.x+mapWidth/2, d3.event.transform.y+mapHeight/2];
+				var offset = [d3.event.transform.x+mapWidth/2*d3.event.transform.k, d3.event.transform.y+mapHeight/2*d3.event.transform.k];
 
 				//Calculate new scale
-				var newScale = d3.event.transform.k * 1000;
+				var newScale = d3.event.transform.k * 5000;
 
 				//Update projection with new offset and scale
 				projection.translate(offset)
@@ -219,10 +254,10 @@ d3.json("data/usroads.json", function(error, usroads) {
 			}
             //Then define the zoom behavior
 			var zoom = d3.zoom()
-						 .scaleExtent([ 0.2, 2.0 ])
-						 .translateExtent([[ -1200, -700 ], [ 1200, 700 ]])
+						 //.scaleExtent([ 0.2, 2.0 ])
+						 //.translateExtent([[ -1200, -700 ], [ 1200, 700 ]])
 						 .on("zoom", zooming);
-            map.call(zoom);*/
+            map.call(zoom);
 //2. Create X axis and scale (never change)
             xBarScale.domain(fatalitiesAndCommute.map(d => d.year));                
 
