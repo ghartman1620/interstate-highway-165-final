@@ -8,7 +8,7 @@ const graphPadding = 50;
 //Define map projection
 var projection = d3.geoAlbersUsa()
                    .translate([mapWidth/2, mapHeight/2])
-                   .scale([5000]);
+                   .scale([1000]);
 
 //Define path generator
 var path = d3.geoPath()
@@ -198,16 +198,16 @@ d3.json("data/usroads.json", function(error, usroads) {
                 .attr("class",function(d) { return "roads " + d.properties.type.toLowerCase().split(' ').join('-'); });
 
 //1.5 Make map zoomable (from book chapter 14 example 16)
-            var zooming = function(d) {
+            /*var zooming = function(d) {
 
 				//Log out d3.event.transform, so you can see all the goodies inside
 				//console.log(d3.event.transform);
 
 				//New offset array
-				var offset = [d3.event.transform.x, d3.event.transform.y];
+				var offset = [d3.event.transform.x+mapWidth/2, d3.event.transform.y+mapHeight/2];
 
 				//Calculate new scale
-				var newScale = d3.event.transform.k * 5000;
+				var newScale = d3.event.transform.k * 1000;
 
 				//Update projection with new offset and scale
 				projection.translate(offset)
@@ -222,7 +222,7 @@ d3.json("data/usroads.json", function(error, usroads) {
 						 .scaleExtent([ 0.2, 2.0 ])
 						 .translateExtent([[ -1200, -700 ], [ 1200, 700 ]])
 						 .on("zoom", zooming);
-            map.call(zoom);
+            map.call(zoom);*/
 //2. Create X axis and scale (never change)
             xBarScale.domain(fatalitiesAndCommute.map(d => d.year));                
 
