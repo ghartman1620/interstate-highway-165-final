@@ -9,12 +9,8 @@ body{
 h1,h2,h3{
     line-height:1.2;
 } 
-.center-text {
-    text-align: center;
-}
 .center {
-    margin-left: 20%;
-    margin-right: 20%;
+    text-align: center;
 }
 
 #slider {
@@ -32,7 +28,7 @@ h1,h2,h3{
   stroke-linecap: round;
 }
 
-.major-highway { stroke: #525252; stroke-width: 5px; }
+.major-highway { stroke: #525252; stroke-width: 1.5px; }
 .secondary-highway { stroke: #737373; }
 .road { stroke: #bdbdbd; }
 .beltway { stroke: #737373; }
