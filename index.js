@@ -5,6 +5,9 @@ const graphHeight = 400;
 
 const graphPadding = 50;
 
+const barGraphColorDefault = "#808080";
+const barGraphColorHighlighted = "#303030";
+
 //Define map projection
 var projection = d3.geoAlbersUsa()
                    .translate([mapWidth/2, mapHeight/2])
@@ -52,7 +55,7 @@ d3.select("p#value").text(d3.timeFormat('%Y')(slider.value()));
     d3.select("p#value").text(d3.timeFormat('%Y')(val));
     year = val.getYear() + 1900;
     graph.selectAll("rect")
-        .attr("fill", d => d.year === year ? "blue" : "black");
+        .attr("fill", d => d.year === year ? barGraphColorHighlighted : barGraphColorDefault);
 });
 
 var xBarScale = d3.scaleBand().rangeRound([graphPadding,  graphWidth-graphPadding]).padding(0.1);
@@ -123,6 +126,7 @@ function drawBarGraph(dataParser, data) {
     graph.append("g")
         .append("text")
         .attr("class", "y-axis")
+        .attr("fill", "#D3D3D3")
         .attr("x", -graphHeight/2)
         .attr("y", "1em")
         .attr("transform", "rotate(-90)")
@@ -139,7 +143,7 @@ function drawBarGraph(dataParser, data) {
         .attr("x", d => xBarScale(d.year))
         .attr("y", d => yBarScale(dataParser.datum(d)))
         .attr("width", xBarScale.bandwidth())
-        .attr("fill", d => d.year === year ? "blue" : "black");
+        .attr("fill", d => d.year === year ? barGraphColorHighlighted: barGraphColorDefault);
 }
 
 

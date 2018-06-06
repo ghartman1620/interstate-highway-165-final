@@ -9,13 +9,22 @@ body{
 h1,h2,h3{
     line-height:1.2;
 } 
-.center {
+.text-center {
     text-align: center;
+}
+#map {
+    margin-left: 10%;
+}
+#graph {
+    margin-left: 12%;
 }
 
 #slider {
     width: 100%;
-    
+    margin-left: 25%;
+}
+#graph-checks {
+    margin-left: 35%;
 }
 .date {
     font-size: 20pt;
