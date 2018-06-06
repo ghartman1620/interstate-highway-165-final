@@ -1,0 +1,39 @@
+body{
+    margin:40px auto;
+    max-width:90%;
+    line-height:1.6;
+    font-size:18px;
+    color:#444;
+    padding: 0 10px;
+}
+h1,h2,h3{
+    line-height:1.2;
+} 
+.center {
+    text-align: center;
+}
+
+#slider {
+    width: 100%;
+    
+}
+.date {
+    font-size: 20pt;
+}
+
+
+.roads {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.major-highway { stroke: #525252; stroke-width: 1.5px; }
+.secondary-highway { stroke: #737373; }
+.road { stroke: #bdbdbd; }
+.beltway { stroke: #737373; }
+.ferry-route { stroke: #4393c3; stroke-width: 1.5px; }
+
+.major-highway:hover {
+    stroke: #00FF00
+}

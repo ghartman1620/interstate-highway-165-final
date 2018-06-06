@@ -3,15 +3,18 @@
     <head>
         <meta charset="utf-8">
         <!-- CSS borrowed from http://bettermotherfuckingwebsite.com/ -->
-        <style type="text/css">body{
-            margin:40px
-auto;max-width:800px;line-height:1.6;font-size:18px;color:#444;padding:0
-    10px}h1,h2,h3{line-height:1.2} .center {text-align: center;}
-        </style>
-        <title>Highway 165 Proposal</title>
+ 
+        <link rel="stylesheet" type="text/css" href="index.css">
+        
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://unpkg.com/d3-simple-slider@0.2.1/build/d3-simple-slider.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+        
+        <title>Interstate Highway System</title>
     </head>
     <body>
-        <h1>The Interstate Highway System: the Road to a Growing Nation</h1>
+        
+        <h1>Growth of Interstate Highway System Brings Reduced Traffic Deaths and Growing Cities</h1>
         <p class="center">Gabriel Hartman ghartman@ucsc.edu</p>
 <!--
         <p> The Interstate Highway Act, passed in 1956, created a 41,000-mile highway system across the United States aiming to connect the states and provide a safe, effective, personal, and affordable means of transpotation for citizens.</p>
@@ -23,62 +26,31 @@ auto;max-width:800px;line-height:1.6;font-size:18px;color:#444;padding:0
         
         <p> In 1956, President Dwight D. Eisenhower signed into law the Interstate Highway Act, fundind a 41,000-mile network of highways across the United States. This has been called one of the best investments a nation ever made. The amount of money spent on the interstate highway system was returned in safety, economic gains, and improved quality of life for Americans. I want to show that federally funded investments to public infrastructure such as the Interstate Highway System can be cost effective and yield useful returns for the nation.</p>
         
-        <h2> Data Design </h2>
+        <p class="center date" id="value"></p>
+        <svg class="center" id="map"></svg>
         
-        <p> <strong>Data Variable 1:</strong> growth of the interstate highway system over time. I want to show how long and in which parts of the nation the Interstate Highway System was throughout its construction from 1956-1996 (perhaps some years before and after for context.) The data for this will have to come from multiple sources: one for the span of the highway itself (modern data will suffice) and another data source stating when different parts of the interstate highway were constructed. The first dataset was compiled by somebody and can be found on <a href="https://github.com/jalbertbowden/us-data/tree/master/shapefiles/us-interstates/geojson">github.</a> <a href="https://en.wikipedia.org/wiki/List_of_Interstate_Highways">The fine folks at Wikipedia</a> have compiled some of the second dataset, although I'd love to see if I can find a more detailed dataset showing the parts within each highway being constructed over a few years as the first visualization source below shows. </p>
-            
-        <p><strong>Data Variable 2:</strong> Vehicle Accident and Death data. <a href="https://www.fhwa.dot.gov/policyinformation/statistics/2007/pdf/fi200.pdf">the Federal Highway Administration</a> has this data.</p>
+        <div class="center" id="slider"></div>
         
-        <p><strong>Data Variable 3:</strong> Commute time and method data. The <a href="https://www.census.gov/topics/employment/commuting/data.html">U.S. Census</a> has this data</p>
+        <svg class="center" id="graph"></svg>
         
-        <p><strong>Data Variable 4:</strong> The amount spent and the sources of the revenue going towards the interstate highway system. Unfortunately it doesn't look like anybody has put the yearly information all in one place, but it's all available in the yearly budgets for the U.S. Government <a href="https://fraser.stlouisfed.org/content/?toc_id=220045&filepath=/files/docs/publications/usbudget/bus_1957.pdf&start_page=81">(example: 1957)</a></p>
+        <br>    
+        <form>
+        <input type="radio" value="fatalitiesPerCapita" name="dataSelection" checked> Highway Fatalities Per Capita<br>
+        <input type="radio" value="fatalitiesPerVmt" name="dataSelection"> Traffic Deaths per Vehicle Miles Travelled<br>
+        <input type="radio" value="driveCarsToWork" name="dataSelection"> Americans Driving Cars to Work<br>
+        <input type="radio" value="publicTransportation" name="dataSelection"> Americans Taking Public Transportation to Work<br>
         
-        <p> <strong> Data Variable 5:</strong> Population Density by State over time - from <a href="https://web.archive.org/web/20141121134738/http://www.census.gov/population/www/documentation/twps0056/tabs15-65.pdf">the U.S. Census</a></p>
-        
-        
-        
-        
-        
-        
-        
-        <h2> Visualization Design </h2>
-        
-        <p> The main visualization layout will be a geomap, with a timeline slider to show various dates (perhaps show by decade, due to the nature of the census data). Data variables can be shown on the map mapped to colors by category.</p> 
-        
-        <p> To show expenditures on the highway system, the timeline can show on it a line chart of highway expenditures by year (adjusted for inflation). (Like in <a href="https://www.census.gov/dataviz/visualizations/031/">this visualization example.</a>)
-        
-        <p>There will be a panel to select what data variable to overlay on top of the highway growth change over time between the non-highway data variables: commute data, vehicle accident data, and population data.</p>
-        
-        <p> To show expenditures, each individual highway will be hoverable, bolding the highway selected. Hovering a particular highway will show a tooltip on the side indicating what highway it is, the cost of constructing that highway, the years during which it was under initial construction, and the areas it services. </p>
-        
-        <h2> Other weblinks</h2>
-        <p> Here are some links left over from the initial proposal that I don't currently plan to draw data variables from.</p>
-        
-        <p> <a href="https://www.fhwa.dot.gov/highwayhistory/data/page01.cfm">FHWA on expansions to initial Interstate Highway Act</a></p>
-        
-        <p> <a href="https://services.nationalmap.gov/arcgis/rest/services/transportation/MapServer">USGS on current state of various transportation infrastructure</a></p>
-        
-        
-        <h2> Visualization Sources</h2>
-        
-        <p> <a href="https://www.fhwa.dot.gov/interstate/densitymap.cfm">The Interstate System and Population Density (uses flash)</a> by the Federal Highway Administration </p>
-        
-        <p> <a href="https://www.census.gov/dataviz/visualizations/031/">I-90 Population Density Profile, 2010</a> and <a href="https://www.census.gov/dataviz/visualizations/030/">I-10 Population Density Profile, 2010</a> by the U.S. Census</p>
-        
-        <p> <a href="http://www.visualcapitalist.com/wp-content/uploads/2017/10/interstate-highways-map.html">U.S. Interstate Highways, as a Transit Map</a> by Jeff Desjardins (published on <a href="https://.visualcapitalist.com">Visual Capitalist</a>)</p>
-        
-        
-        <h2> Questions </h2>
-        
-        <p> Some questions that occured to me during the drafting of this document:</p>
+        </form>
 
-        <p> What is the most effective way to visualize a budget? Showing how much income was generated by the excise taxes as a part of the Interstate Highway Act in contrast to how much was spent on it might be interesting - Eisenhower and Congress made the Interstate Highway Act "self-liquidating," meaning it would not add to the national debt.</p>
+        <p> Code Sources</p>
+        <ul>
+            <li><a href="https://github.com/alignedleft/d3-book/blob/master/chapter_14/03_scaled.html">03_scaled.html from Code examples for "Interactive Data Visualization for the Web"</a></li>
+            <li><a href="https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518">d3-simple-slider</a> by John Walley on bl.ocks</li>
+            <li><a href="https://stackoverflow.com/questions/41075140/toggle-between-selected-radio-button-using-d3"> Gerardo Furtado on selecting a group of radio buttons using d3</a></li>
+            <li><a href="https://gist.github.com/bricedev/96d2113bd29f60780223">US Road Map</a> by github user <a href="https://gist.github.com/bricedev/96d2113bd29f60780223">bricedev</a></li>
+            
+        </ul>
         
-        <p>Thoughts on additional interesting information from the census data that might contribute to the purpose of the project?</p>
-        
-        <p> Would it be more effective to have a time slider by decade (to match census data) or interpolate census data within decades and have the time slider change by year to show in more detail the construction of the highway system?</p>
-        
-        <small><a href="https://github.com/ghartman1620/interstate-highway-165-final">https://github.com/ghartman1620/interstate-highway-165-final</a></small>
-        
+        <script type="text/javascript" src="index.js"></script>
     </body>
 </html>
