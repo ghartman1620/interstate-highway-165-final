@@ -14,43 +14,67 @@
     </head>
     <body>
         
-        <h1>Growth of Interstate Highway System Brings Reduced Traffic Deaths and Growing Cities</h1>
-<!--
-        <p> The Interstate Highway Act, passed in 1956, created a 41,000-mile highway system across the United States aiming to connect the states and provide a safe, effective, personal, and affordable means of transpotation for citizens.</p>
-        <p> Construction of the highway continued over the decades since, with a 2000 mile addition being passed as recently as 1997.</p>
-        <p> This construction was fragmented and parts of the highway were completed before others. As the highway grew, how did it affect the lives of Americans living in the places with highway growth? Were they more prosperous? Did their commute times change? Can we show a meaningful link between the construction of parts of the system and meaningful variables in areas it was built?</p>
--->
-        
-        <h2> Purpose </h2>
-        
-        <p> In 1956, President Dwight D. Eisenhower signed into law the Interstate Highway Act, fundind a 41,000-mile network of highways across the United States. This has been called one of the best investments a nation ever made. The amount of money spent on the interstate highway system was returned in safety, economic gains, and improved quality of life for Americans. I want to show that federally funded investments to public infrastructure such as the Interstate Highway System can be cost effective and yield useful returns for the nation.</p>
-        
-        <p class="text-center date" id="value"></p>
-        <svg class="center" id="map"></svg>
-        
+        <h1 class="text-center">Interstate Highway System Growth: Reduced Traffic Deaths</h1>
+        <div class="description">
+        <p> In 1956, President Dwight D. Eisenhower signed into law the Interstate Highway Act, funding a 41,000-mile network of highways across the United States. This has been called one of the best investments a nation ever made. The Interstate Highway System is a safer network of roads than others in our nation's highway system. Construction of the Interstate Highway System and other road safety improvements cause less traffic fatalities to occur for each vehicle mile travelled (VMT).</p>
+        <p > The example of the Interstate Highway System shows that large national infrastructure projects can be effective and feasible but take time and investment to yield results.</p>
+        </div>
         <div id="slider"></div>
+        <svg id="map"></svg>
         
-        <svg class="center" id="graph"></svg>
         
-        <br>    
-        <form id="graph-checks">
-        <input type="radio" value="fatalitiesPerCapita" name="dataSelection" checked> Highway Fatalities Per Capita<br>
-        <input type="radio" value="fatalitiesPerVmt" name="dataSelection"> Traffic Deaths per Vehicle Miles Travelled<br>
-        <input type="radio" value="driveCarsToWork" name="dataSelection"> Americans Driving Cars to Work<br>
-        <input type="radio" value="publicTransportation" name="dataSelection"> Americans Taking Public Transportation to Work<br>
+<!--
+        <svg id="graph"></svg>
         
-        </form>
-
-        <p> Code Sources</p>
-        <ul>
-            <li><a href="https://github.com/alignedleft/d3-book/blob/master/chapter_14/03_scaled.html">03_scaled.html from Code examples for "Interactive Data Visualization for the Web"</a></li>
-            <li><a href="https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518">d3-simple-slider</a> by John Walley on bl.ocks</li>
-            <li><a href="https://stackoverflow.com/questions/41075140/toggle-between-selected-radio-button-using-d3"> Gerardo Furtado on selecting a group of radio buttons using d3</a></li>
-            <li><a href="https://gist.github.com/bricedev/96d2113bd29f60780223">US Road Map</a> by github user <a href="https://gist.github.com/bricedev/96d2113bd29f60780223">bricedev</a></li>
+        
+        <svg id="budget"></svg>
+        
+        <svg id="scatterplot"></svg>
+-->
+        <br><br>
+        
+        <div class="description">
+            <p> * Other highways include other highways in the National Highway System, other Federal Aid Highways, and non-Federal Aid Highways.</li>
+            <p> ** Deaths mitigated for a year computed by supposing the miles that were driven on interstates on any given year would instead be driven on other highway systems if no interstate highway system existed and computing the number of fatalities that would have occured were those miles driven at the fatality rate of other highways. </li>
+        </div>
+        
+        
+        <p class="description">By Gabriel Hartman ghartman@ucsc.edu in collaboration with Suresh K. Lodha</p>
+        
+        <br>
+        <div class="columns">
+            <div class="sources">
+                <p><strong>Files Submitted</strong></p>
+                <p>index.html</p>
+                <p>index.js</p>
+                <p>index.css</p>
+                <p>usroads.json</p>
+                <p>fatalities.csv</p>
+            </div>
+            <div class="sources">
+                <p><strong>Data Sources</strong></p>
+                <p><a href="http://www.publicpurpose.com/hwy-intmiles.htm">USA Interstate Highway System: Miles/Kilometers Opened by Year</a></p>
+                <p><a href="https://www.fhwa.dot.gov/policyinformation/statistics.cfm">Highway Statistics Series</a></p>
+                <p><a href="http://www.publicpurpose.com/freewaypdf.pdf">The Best Investment a Nation Ever Made: a Tribute to the Dwight D. Eisenhower System of Interstate and Defense Highways</a></p>
+            </div>
+            <div class="sources">
+                <p><strong>Visualization Sources</strong></p>
+                <p><a href="https://www.fhwa.dot.gov/interstate/densitymap.cfm">Eisenhower Interstate Highway System - Interstate Density Map</a></p>
+                <p><a href="https://www.census.gov/dataviz/visualizations/031/">I-90 Population Density Profile, 2010</a></p>
+                <p><a href="http://www.visualcapitalist.com/wp-content/uploads/2017/10/interstate-highways-map.html">Interstate Highways Map</a></p>
+            </div>
+            <div class="sources">
+                <p><strong>Code Sources</strong></p>
+                <p><a href="https://bl.ocks.org/mbostock/3887051"> Grouped Bar Chart</a> by Mike Bostock</p>
+                <p><a href="https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518"> d3-simple-slider </a> by John Walley</p>
+                <p><a href="https://gist.github.com/bricedev/96d2113bd29f60780223">U.S. Road Map</a> by Brice Pierre de la Briere</p>
+            </div>
             
-        </ul>
-        <p>Gabriel Hartman ghartman@ucsc.edu</p>
-        <p> In collaboration with Suresh Lodha</p>
+            
+                 
+        </div>
+
         <script type="text/javascript" src="index.js"></script>
+
     </body>
 </html>

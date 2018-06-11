@@ -12,6 +12,11 @@ h1,h2,h3{
 .text-center {
     text-align: center;
 }
+.description {
+    text-align: center;
+    max-width: 50%;
+    margin: auto;
+}
 #map {
     margin-left: 10%;
 }
@@ -20,8 +25,7 @@ h1,h2,h3{
 }
 
 #slider {
-    width: 100%;
-    margin-left: 25%;
+    margin-left: 35%;
 }
 #graph-checks {
     margin-left: 35%;
@@ -45,4 +49,26 @@ h1,h2,h3{
 
 .major-highway:hover {
     stroke: #00FF00
+}
+
+.tooltip {
+    
+}
+.tooltip rect {
+    fill: lightblue;
+/*    opacity: .3;*/
+    stroke-width: 2;
+    stroke: rgb(0,0,0);
+}
+
+#scatterplot {
+    margin-left: 35%;
+}
+
+.columns {
+    column-count: 4;
+}
+.sources {
+    text-align: center;
+    height: 500px;
 }

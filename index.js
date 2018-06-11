@@ -1,45 +1,86 @@
-const mapWidth = 1500;
-const mapHeight = 500;
-const graphWidth = 1500;
-const graphHeight = 400;
+const totalWidth = 1500;
+const totalHeight = 850;
 
+const mapX = 0;
+const mapY = 250;
+const mapWidth = 500;
+const mapHeight = 400;
+
+const graphX = 750;
+const graphY = 0;
+const graphWidth = 500;
+const graphHeight = 400;
 const graphPadding = 50;
 
-const barGraphColorDefault = "#808080";
-const barGraphColorHighlighted = "#303030";
+
+const plotX = 750;
+const plotY = 450;
+const plotWidth = 500;
+const plotHeight = 400;
+const plotPadding = 50;
+
+
+const budgetWidth = 500;
+const budgetHeight = 400;
+
+const budgetPadding = 50;
+
+
+const barGraphInterstatesDefault = "#737373";
+const barGraphInterstatesHighlight = "#525252";
+const barGraphOtherDefault = "#bdbdbd";
+const barGraphOtherHighlight = "#969696";
+
+const plotCircleDefault = "#bdbdbd";
+const plotCircleHighlight = "525252";
 
 //Define map projection
 var projection = d3.geoAlbersUsa()
                    .translate([mapWidth/2, mapHeight/2])
-                   .scale([1000]);
+                   .scale([700]);
 
 //Define path generator
 var path = d3.geoPath()
                  .projection(projection);
 
 //Create SVG element
-var map = d3.select("#map")
+var svg = d3.select("svg")
+    .attr("width", totalWidth)
+    .attr("height", totalHeight);
             
-            .attr("width", mapWidth)
-            .attr("height", mapHeight);
+var map = svg.append("g")
+    .attr("transform", `translate(${mapX}, ${mapY})`)
+    .attr("width", mapWidth)
+    .attr("height", mapHeight);
 
-var graph = d3.select("#graph")
-            .attr("width", graphWidth)
-            .attr("height", graphHeight)
-        
+var graph = svg.append("g")
+    .attr("transform", `translate(${graphX}, ${graphY})`)
+    .attr("width", graphWidth)
+    .attr("height", graphHeight);
+/*        
+var budget = d3.select("#budget")
+            .attr("width", budgetWidth)
+            .attr("height", budgetHeight);*/
+
+var plot = svg.append("g")
+    .attr("transform", `translate(${plotX}, ${plotY})`)
+
+    .attr("width", plotWidth)
+    .attr("height", plotHeight)
 
 /*
+
   Slider code from https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518
 */
-var data3 = d3.range(0, 108).map(function (d) { return new Date(1900 + d, 10, 3); });
+var data3 = d3.range(0, 29).map(function (d) { return new Date(1967 + d, 10, 3); });
 
 var slider = d3.sliderHorizontal()
     .min(d3.min(data3))
     .max(d3.max(data3))
     .step(1000 * 60 * 60 * 24 * 365)
-    .width(800)
+    .width(400)
     .tickFormat(d3.timeFormat('%Y'))
-    .tickValues(data3.filter(d => d.getYear()%10===0))
+    .tickValues(data3.filter(d => d.getYear()%5===0));
 
 
 var g = d3.select("div#slider").append("svg")
@@ -51,217 +92,364 @@ var g = d3.select("div#slider").append("svg")
 g.call(slider);
 d3.select("p#value").text(d3.timeFormat('%Y')(slider.value()));
 
- slider.on('onchange', val => {
-    d3.select("p#value").text(d3.timeFormat('%Y')(val));
-    year = val.getYear() + 1900;
-    graph.selectAll("rect")
-        .attr("fill", d => d.year === year ? barGraphColorHighlighted : barGraphColorDefault);
-});
+let zBarScaleDefault = d3.scaleOrdinal()
+    .range([barGraphInterstatesDefault, barGraphOtherDefault]);
+let zBarScaleHighlight = d3.scaleOrdinal()
+    .range([barGraphInterstatesHighlight, barGraphOtherHighlight]);
 
-var xBarScale = d3.scaleBand().rangeRound([graphPadding,  graphWidth-graphPadding]).padding(0.1);
 
-var yBarScale = d3.scaleLinear().range([ graphPadding, graphHeight-graphPadding,]);
 
+
+var xPlotScale = d3.scaleLinear().range([plotPadding, plotWidth-plotPadding]);
+
+var yPlotScale = d3.scaleLinear().range([plotPadding, plotHeight-plotPadding]);
+
+
+//var xRateGraph1Scale = d3.scaleBand().rangeRound([rateGraph1Padding, rateGraphWidth-rateGraphPadding]).padding(0.1);
+
+//var yRateGraph1Scale = d3.scaleLinear().range([rateGraph1Padding, rateGraphHeight-rateGraphPadding]);
 
 var year = slider.value().getYear() + 1900;
 
 
-/*
-  Here are a series of data parsing objects - they contain some functions
-  useful to draw a particular dataset. A single one will be passed to drawBarGraph()
-*/
-
-// highway deaths per capita data. to be passed fatalities.csv data.
-const fatalitiesPerCapita = {
-    domain: (data) => [d3.max(data, d => 
-        
-        //i Really enjoy how when I divide by d.popluation instead of d.population instead of crashing or erroring or doing SOMETHING,
-        //javascript returns motherfucking NaN from this function and makes the rest of the thing silently not work
-        //instead of throwing a godamn error. FUCKYOU.JS
-        
-        (100000 * d.highwayFatalitiesTotal/d.population)), 0],
-    text: () => "Highway Fatalities Per 100,000 People",
-    datum: (d) => 100000*d.highwayFatalitiesTotal/d.population,
-    
-};
-
-//highway deaths per vehicle miles travelled. to be passed fatalities.csv data.
-const fatalitiesPerVmt = {
-    domain: (data) => [d3.max(data, d => 
-        
-        //i Really enjoy how when I divide by d.popluation instead of d.population instead of crashing or erroring or doing SOMETHING,
-        //javascript returns motherfucking NaN from this function and makes the rest of the thing silently not work
-        //instead of throwing a godamn error. FUCKYOU.JS
-        
-        (d.perVmt)), 0],
-    text: () => "Highway Fatalities Per 100 Million Annual Vehicle Miles Travelled",
-    datum: (d) => d.perVmt,
-    
-};
-
-
-const driveCarsToWork = {
-    domain: (data) => [d3.max(data, d => d.droveCars), 0],
-    text: () => "Number of Americans Who Drive Cars to Work",
-    datum: (d) => d.droveCars,
-}
-
-const publicTransportation = {
-    domain: (data) => [d3.max(data, d => d.publicTransportation), 0],
-    text: () => "Number of Americans Who Take Public Transportation to Work",
-    datum: (d) => d.publicTransportation,
-}
-
-
-
-function drawBarGraph(dataParser, data) {
-    
-    yBarScale.domain(dataParser.domain(data));
-    var barYAxis = d3.axisRight(yBarScale);   
-    graph.selectAll(".y-axis").remove();
-    graph.append("g")
-        .call(barYAxis)
-        .attr("class", "y-axis")
-        .attr("transform", `translate(${graphPadding/2+10}, 0)`)
-    graph.append("g")
-        .append("text")
-        .attr("class", "y-axis")
-        .attr("fill", "#D3D3D3")
-        .attr("x", -graphHeight/2)
-        .attr("y", "1em")
-        .attr("transform", "rotate(-90)")
-        .attr("fill", "#000")
-        .attr("text-anchor", "middle")
-        
-        .text(dataParser.text())
-    
-    
-    //Transition: Yay or nay?
-    graph.selectAll("rect")
-        .transition()
-        .attr("height", d => (graphHeight-graphPadding)-yBarScale(dataParser.datum(d)))
-        .attr("x", d => xBarScale(d.year))
-        .attr("y", d => yBarScale(dataParser.datum(d)))
-        .attr("width", xBarScale.bandwidth())
-        .attr("fill", d => d.year === year ? barGraphColorHighlighted: barGraphColorDefault);
-}
-
 
 //Load in GeoJSON data
 d3.json("data/usroads.json", function(error, usroads) {
-  if (error) throw error;
-    d3.csv("data/fatalitiesAndCommute.csv", function(fatalitiesAndCommute){
-        fatalitiesAndCommute.forEach(d => {
-            d.year = +d.year;
-            d.perVmt = !d.perVmt ? 0 : +d.perVmt;
-            d.highwayFatalitiesTotal = !d.highwayFatalitiesTotal ? 0 : +d.highwayFatalitiesTotal;
-            d.population = +d.population;
-            d.droveCars = !d.droveCars ? 0 : +d.droveCars;
-            d.publicTransportation = !d.publicTransportation ? 0 : +d.publicTransportation;
-            d.drovePct = !d.drovePct ? 0 : +d.drovePct;
-            d.publicPct = !d.publicPct ? 0 : +d.publicPct;
+    if (error) throw error;
+    d3.csv("data/updatedFatalities.csv", function(fatalities){
+        let obj = Object.assign({}, fatalities);
 
+        fatalities.forEach(d => {
+            d.year = +d.year;
+            d.interstateTotalVmt = +d.interstateTotalVmt;
+            d.otherNatlHighwayVmt = +d.otherNatlHighwayVmt;
+            d.nonFedAidVmt = +d.nonFedAidVmt;
+            d.otherFedAidVmt = +d.otherFedAidVmt;
+            d.interstateFatalities = +d.interstateFatalities;
+            d.otherNatlHighwayFatalities = +d.otherNatlHighwayFatalities;
+            d.nonFedAidFatalities = +d.nonFedAidFatalities;
+            d.otherFedAidFatalities = +d.otherFedAidFatalities;
+
+            d.interstateMilage = +d.interstateMilage; //interstateMilage
+
+            //deaths per 100,000,000 VMT
+            d.interstateFatalityRate = d.interstateFatalities/d.interstateTotalVmt;
+            d.otherHighwayVmt = (d.otherNatlHighwayVmt + d.nonFedAidVmt + d.otherFedAidVmt);
+
+            d.otherHighwayFatality = (d.otherNatlHighwayFatalities + d.nonFedAidFatalities + d.otherFedAidFatalities);
+
+            d.otherFatalityRate = d.otherHighwayFatality/d.otherHighwayVmt;
         })
+        
+        slider.on('onchange', val => {
+            year = val.getYear() + 1900;
+
+            graph.selectAll(".bar-group-rect")
+                .attr("fill", function(d) {
+                    if(d.year === year){
+                        return zBarScaleHighlight(d.key);
+                    } 
+                    else{
+                        return zBarScaleDefault(d.key);
+                    }
+                });
+
+            plot.selectAll("circle")
+                .attr("fill", function(d) {
+                    return d.year === year ? plotCircleHighlight : plotCircleDefault;
+                });
+            map.select("#detail-text")
+                .text(`${fatalities.find(d => d.year===year).interstateMilage} miles of Interstate Highway in ${year}`)
+        });
 
 
 //0. Map each radio selector to a dataParser object we made above.
 
-
-            const dataSelection = {
-                "fatalitiesPerCapita" : fatalitiesPerCapita,
-                "fatalitiesPerVmt" : fatalitiesPerVmt,
-                "driveCarsToWork" : driveCarsToWork,
-                "publicTransportation" : publicTransportation,
-            }
 //1. Draw map
-            // from https://gist.github.com/bricedev/96d2113bd29f60780223
-            map.append("rect")
-                .attr("fill", "white")
-                .attr("stroke", "#FFFFFF")
-                .attr("width", mapWidth)
-                .attr("height", mapHeight)
-            
-            majorHighways = topojson.feature(usroads, usroads.objects.roads).features.filter(d => d.properties.type === "Major Highway")
-            console.log(majorHighways);
-            longMajorHighways = majorHighways.filter(d=>d.geometry.coordinates.length > 1);
-            console.log(longMajorHighways);
-            map.append("g")
-                .selectAll("path")
-                .data(topojson.feature(usroads, usroads.objects.usa).features)
-                .enter().append("path")
-                .attr("d", path)
-                .attr("fill-opacity","0")
-                .style("stroke","#252525")
-                .style("stroke-width",1);
-            map.append("g")
-                .selectAll("path")
-                .data(longMajorHighways)
-                .enter().append("path")
-                .attr("d", path)
-                .attr("stroke-width", 2)
-                .attr("class",function(d) { return "roads " + d.properties.type.toLowerCase().split(' ').join('-'); });
 
+
+        // from https://gist.github.com/bricedev/96d2113bd29f60780223
+        map.append("rect")
+            .attr("fill", "white")
+            .attr("stroke", "#FFFFFF")
+            .attr("width", mapWidth)
+            .attr("height", mapHeight)
+
+        majorHighways = topojson.feature(usroads, usroads.objects.roads).features.filter(d => d.properties.type === "Major Highway")
+        longMajorHighways = majorHighways.filter(d=>d.geometry.coordinates.length > 1);
+        map.append("g")
+            .selectAll("path")
+            .data(topojson.feature(usroads, usroads.objects.usa).features)
+            .enter().append("path")
+            .attr("d", path)
+            .attr("fill-opacity","0")
+            .style("stroke","#252525")
+            .style("stroke-width",1);
+        map.append("g")
+            .selectAll("path")
+            .data(longMajorHighways)
+            .enter().append("path")
+            .attr("d", path)
+            .attr("stroke-width", 2)    
+            .attr("class",function(d) { return "roads " + d.properties.type.toLowerCase().split(' ').join('-'); });
+        map.append("text")
+            .attr("x", mapWidth/2)
+            .attr("y", 20)
+            .attr("text-anchor", "middle")
+            .text("Extent of the Interstate Highway System");
+        console.log(year);
+        map.append("text")
+            .attr("x", mapWidth/2)
+            .attr("y", mapHeight-20)
+            .attr("text-anchor", "middle")
+            .attr("id", "detail-text")
+            .text(`${fatalities.find(d => d.year===year).interstateMilage} miles of Interstate Highway in ${year}`)
 //1.5 Make map zoomable (from book chapter 14 example 16)
-            /*var zooming = function(d) {
+        /*var zooming = function(d) {
 
-				//Log out d3.event.transform, so you can see all the goodies inside
-				//console.log(d3.event.transform);
+            //Log out d3.event.transform, so you can see all the goodies inside
 
-				//New offset array
-				var offset = [d3.event.transform.x+mapWidth/2, d3.event.transform.y+mapHeight/2];
+            //New offset array
+            var offset = [d3.event.transform.x+mapWidth/2, d3.event.transform.y+mapHeight/2];
 
-				//Calculate new scale
-				var newScale = d3.event.transform.k * 1000;
+            //Calculate new scale
+            var newScale = d3.event.transform.k * 1000;
 
-				//Update projection with new offset and scale
-				projection.translate(offset)
-						  .scale(newScale);
+            //Update projection with new offset and scale
+            projection.translate(offset)
+                      .scale(newScale);
 
-				//Update all paths and circles
-				map.selectAll("path")
-					.attr("d", path);
-			}
-            //Then define the zoom behavior
-			var zoom = d3.zoom()
-						 .scaleExtent([ 0.2, 2.0 ])
-						 .translateExtent([[ -1200, -700 ], [ 1200, 700 ]])
-						 .on("zoom", zooming);
-            map.call(zoom);*/
+            //Update all paths and circles
+            map.selectAll("path")
+                .attr("d", path);
+        }
+        //Then define the zoom behavior
+        var zoom = d3.zoom()
+                     .scaleExtent([ 0.2, 2.0 ])
+                     .translateExtent([[ -1200, -700 ], [ 1200, 700 ]])
+                     .on("zoom", zooming);
+        map.call(zoom);*/
 //2. Create X axis and scale (never change)
-            xBarScale.domain(fatalitiesAndCommute.map(d => d.year));                
-
-            var barXAxis = d3.axisBottom(xBarScale)
-                    .tickValues([1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000]);
-            graph.append("g")
-                .call(barXAxis)
-                .attr("transform", `translate(0, ${graphPadding/2})`)
-            graph.append("g")
-                .append("text")
-
-                .attr("x", graphWidth/2)
-                .attr("y", graphPadding/2)
-                .attr("text-anchor", "middle")
-                .attr("fill", "#000")
-                .text("Year")
+        let keys = ["interstateFatalityRate", "otherFatalityRate"]
+        var xBarScale0 = d3.scaleBand().rangeRound([graphPadding,  graphWidth-graphPadding])
+                .padding(0.1)
+                .domain(fatalities.map(d => d.year));
+        var xBarScale1 = d3.scaleBand().rangeRound([0, xBarScale0.bandwidth()]).padding(0.2);
+        var yBarScale = d3.scaleLinear().range([ graphHeight-graphPadding, graphPadding]);
+        // These colors sourced from https://en.wikipedia.org/wiki/Shades_of_gray
 
 
 
-//3. Initially bind rectangles to our data.
+        xBarScale1.domain(keys);
+        yBarScale.domain([0, 1000*d3.max(fatalities, d => d3.max(keys, key => d[key]))]);        
 
-            graph.selectAll("rect")
-                .data(fatalitiesAndCommute).enter()
-                .append("rect")
+        graph.selectAll("g")
+            .data(fatalities)
+            .enter().append("g")
+            .attr("transform", d => `translate( ${xBarScale0(d.year)}, 0)`)
+            .selectAll("rect")
+                .data(d => keys.map(key => {return {key: key, year: d.year, value: 1000*d[key]}}))
+                .enter().append("rect")
+                .attr("class", "bar-group-rect")
+                .attr("x", d => xBarScale1(d.key))
+                .attr("y", d => yBarScale(d.value))
+                .attr("height", d => graphHeight-graphPadding-yBarScale(d.value))
+                .attr("width", xBarScale1.bandwidth())
+                .attr("fill", function(d) {
+                    if(d.year === year){
+                        return zBarScaleHighlight(d.key);
+                    } 
+                    else{
+                        return zBarScaleDefault(d.key);
+                    }
+                });
+
+        var xBarAxis = d3.axisTop(xBarScale0)
+                .tickValues([1970, 1975, 1980, 1985, 1990, 1995]);
+        var yBarAxis = d3.axisRight(yBarScale)
 
 
-            drawBarGraph(fatalitiesPerCapita, fatalitiesAndCommute);
+        //x axis
+        graph.append("g")
+            .call(xBarAxis)
+            .attr("transform", `translate(0, ${graphHeight-graphPadding/2})`);
+        graph.append("g")
+            .call(yBarAxis)
+            .attr("transform", `translate(${graphPadding/2+10}, 0)`)
+        graph.append("text")
+            .attr("x", -graphHeight/2)
+            .attr("y", graphPadding/2)
+            .attr("transform", "rotate(-90)")
+            .attr("text-anchor", "middle")
+            .attr("fill", "#000")
+            .text("Fatalities per 1 billion VMT")
+
+
+        //x axis label
+        graph.append("g")
+            .append("text")
+
+            .attr("x", graphWidth/2)
+            .attr("y", graphHeight)
+            .attr("text-anchor", "middle")
+            .attr("fill", "#000")
+            .text("Year")
+
+        //legend
+        var legend = graph.append("g")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", 14)
+            .attr("text-anchor", "front")
+            .selectAll("g")
+            .data(keys)
+            .enter().append("g")
+            .attr("transform", function(d, i) { return "translate(" + (graphWidth-250) + "," + (50+i * 20) + ")"; });
+
+        legend.append("rect")
+            .attr("width", 19)
+            .attr("height", 19)
+            .attr("fill", zBarScaleDefault)
+        legend.append("text")
+            .text( d => {
+                if(d == "interstateFatalityRate") return "Interstates"
+                else return "Other Highways"
+            })
+            .attr("dx", 25)
+            .attr("dy", 15);
+
+
+        graph.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", graphWidth/2)
+            .attr("y", 20)
+            .text("Fatality Rate on Interstates and Other Highways*")
+
+
 
 //4 Set up interactivity that relies on our data. 
 
-            //This trick from https://stackoverflow.com/questions/41075140/toggle-between-selected-radio-button-using-d3
-            d3.selectAll("input[name='dataSelection']").on("change", function(){
-                drawBarGraph(dataSelection[this.value], fatalitiesAndCommute);
-            });
+        //This trick from https://stackoverflow.com/questions/41075140/toggle-between-selected-radio-button-using-d3
+        /*d3.selectAll("input[name='dataSelection']").on("change", function(){
+            drawBarGraph(dataSelection[this.value], fatalitiesAndCommute);
+        });*/ 
 
 
+//5. Draw scatterplot showing new data
+
+        let deathsPrevented = d => d.otherFatalityRate*d.interstateTotalVmt - d.interstateFatalityRate*d.interstateTotalVmt;
+
+        scatterPlotDataset = fatalities.filter(d => d.interstateMilage);
+        xPlotScale.domain([d3.min(scatterPlotDataset, d => d.interstateMilage), d3.max(scatterPlotDataset, d => d.interstateMilage)]);
+        yPlotScale.domain([d3.max(scatterPlotDataset, d => deathsPrevented(d)), d3.min(scatterPlotDataset, d => deathsPrevented(d))]);
+
+        //lives saved = nonInterstateFatalityRate*interstateVmt - interstateFatalityRate*interstateVmt;
+
+        // nonInterstateFatalityRate = ()=
+
+        var xPlotAxis = d3.axisTop(xPlotScale)
+
+        plot.append("g")
+            .call(xPlotAxis)
+            .attr("transform", `translate(0 ${plotHeight-20})`);
+
+        var yPlotAxis = d3.axisRight(yPlotScale)
+
+        plot.append("g")
+            .call(yPlotAxis)
+            .attr("transform", "translate(20 0)");
+        plot.selectAll("circle")
+            .data(scatterPlotDataset)
+            .enter().append("circle")
+            .attr("r", "8")
+            .attr("cy", d => yPlotScale(deathsPrevented(d)))
+
+            .attr("cx", d => xPlotScale(d.interstateMilage))
+            .on("mouseover", d => {
+
+                var group = plot
+                    .append("g")
+                    .attr("class", "tooltip");
+                const TOOLTIP_OFFSET_LEFT = 400;
+                group.append("rect")
+                    .attr("width", 380)
+                    .attr("height", 100)
+                    .attr("x", xPlotScale(d.interstateMilage)-400)
+                    .attr("rx", 5)
+                    .attr("ry", 5)
+                    .attr("y", yPlotScale(deathsPrevented(d))-50)
+
+                //Is there a better way to put newlines between text in tooltips than this silly nonsense?
+                group.append("text")
+                    .attr("x", xPlotScale(d.interstateMilage))
+                    .attr("y", yPlotScale(deathsPrevented(d)))
+                    .attr("dx", -TOOLTIP_OFFSET_LEFT+5)
+                    .attr("dy", -23)
+                    .text(d.year);
+                group.append("text")
+                    .attr("x", xPlotScale(d.interstateMilage))
+                    .attr("y", yPlotScale(deathsPrevented(d)))
+                    .attr("dx", -TOOLTIP_OFFSET_LEFT+5)
+                    .attr("dy", -9)
+                    .text(`Miles Driven on Interstates: ${d.interstateTotalVmt} Million`);
+                group.append("text")
+                    .attr("x", xPlotScale(d.interstateMilage))
+                    .attr("y", yPlotScale(deathsPrevented(d)))
+                    .attr("dx", -TOOLTIP_OFFSET_LEFT+5)
+                    .attr("dy", 5)
+                    .text(`Miles Driven on Other Highways: ${d.otherHighwayVmt} Million`);
+                group.append("text")
+                    .attr("x", xPlotScale(d.interstateMilage))
+                    .attr("y", yPlotScale(deathsPrevented(d)))
+                    .attr("dx", -TOOLTIP_OFFSET_LEFT+5)
+                    .attr("dy", 19)
+                    .text(`Interstate Vehicle Death Rate: ${(100*d.interstateFatalityRate).toFixed(2)}`);
+                group.append("text")
+                    .attr("x", xPlotScale(d.interstateMilage))
+                    .attr("y", yPlotScale(deathsPrevented(d)))
+                    .attr("dx", -TOOLTIP_OFFSET_LEFT+5)
+                    .attr("dy", 33)
+                    .text(`Other Highway Vehicle Death Rate ${(100*d.otherFatalityRate).toFixed(2)}`);
+
+            })
+            .on("mouseout", d => {
+                plot.selectAll(".tooltip").remove();
+            })
+            .attr("fill", function(d) {
+                return d.year === year ? plotCircleHighlight : plotCircleDefault;
+            });``
+        plot.append("g").attr("class", "tooltip");
+        plot.append("text")
+            .attr("fill", "#D3D3D3")
+            .attr("x", -plotHeight/2)
+            .attr("y", "1em")
+            .attr("transform", "rotate(-90)")
+
+            .attr("fill", "#000")
+            .attr("text-anchor", "middle")
+            .text("Deaths Prevented by use of Interstates**")
+
+        plot.append("text")
+            .attr("fill", "#D3D3D3")
+            .attr("x", plotWidth/2)
+            .attr("y", plotHeight-5)
+            .attr("fill", "#000")
+            .attr("text-anchor", "middle")
+            .text("Miles of Interstate Highway")
+
+        plot.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", plotWidth/2)
+            .attr("y", 20)
+            .text("Death Mitigation by the Interstate Highway System")
+        /*
+        var xRateGraph1Axis = d3.axisBottom(xRateGraph1Scale);
+
+        var yRateGraph1Axis = d3.axisRight(yRateGraph1Scale);
+        rateGraph1.selectAll("rect")
+            .data(fatalities).enter()
+            .append("rect")
+            .attr("x", 10);*/
     });
 });
+
+

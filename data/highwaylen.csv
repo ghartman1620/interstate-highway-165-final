@@ -1,0 +1,143 @@
+number,lengthmi,lengthkm,southwestend,northeastend,formed,removed,notes
+I‑2,46.8,75.3,"US 83 in Penitas, Texas","I-69E/US 77/US 83 in Harlingen, Texas",2013,current,"Texas only
+Associated routes: none"
+I‑4,132.3,212.9,"I-275 in Tampa, Florida","I-95/SR 400 Daytona Beach, Florida",1959,current,"Florida only
+Associated routes: none"
+I‑5,1381.29,"2,222.97","Fed. 1 at Mexican border in San Ysidro, California","BC 99 at Canadian border in Blaine, Washington",1956,current,"Serves three states: CA, OR, WA
+Associated routes: I-105, I-205, I-305, I-405, I-505, I-605, I-705, I-805; Future: I-905"
+I‑8,348.25,560.45,"Sunset Cliffs Boulevard/Nimitz Boulevard in San Diego, California","I-10 in Casa Grande, Arizona",1964,current,"Serves two states: CA, AZ
+Associated routes: none"
+I‑10,2460.34,"3,959.53","SR 1 in Santa Monica, California","I-95/US 17/SR 228 in Jacksonville, Florida",1957,current,"Serves eight states: CA, AZ, NM, TX, LA, MS, AL, FL
+Associated routes: I-110, I-210, I-310, I-410, I-510, I-610, I-710, I-910"
+I‑11,2.5,4,"US 95 near Boulder City, Nevada","I-515/US 93/US 95 near Henderson, Nevada",2017,current,"Nevada only; planned extension north and south
+Associated routes: none"
+I‑12,85.59,137.74,"I-10 in Baton Rouge, Louisiana","I-10/I-59 in Slidell, Louisiana",1967,current,"Louisiana only
+Associated routes: none"
+I‑14,25.9,41.68,"US 190/SH 9 in Copperas Cove, Texas","I-35 in Belton, Texas",2017,current,"Texas only; planned extension east and west
+Associated routes: none"
+I‑15,1433.52,"2,307.03","I-8/SR 15 in San Diego, California","Hwy 4 at Canadian border in Sweetgrass, Montana",1957,current,"Serves six states: CA, NV, AZ, UT, ID, MT
+Associated routes: I-115, I-215, I-315, I-515"
+I‑16,166.81,268.45,"I-75 in Macon, Georgia","SR 404 and Montgomery Street/Martin Luther King Jr. Boulevard in Savannah, Georgia",1966,current,"Georgia only
+Associated route: I-516"
+I‑17,145.76,234.58,"I-10 in Phoenix, Arizona","I-40/SR 89A in Flagstaff, Arizona",1961,current,"Arizona only
+Associated routes: none"
+I‑19,63.6,102.4,"Fed. 15 at Mexican border in Nogales, Arizona","Tucson, Arizona (I-10)",1972,current,"Arizona only
+Associated routes: none
+Uses kilometers instead of miles"
+I‑20,1539.38,"2,477.39","I-10 between Kent and Toyah, Texas","I-95 in Florence, South Carolina",1957,current,"Serves six states: TX, LA, MS, AL, GA, SC
+Associated routes: I-220, I-520, I-820"
+I‑22,213,342.8,I-269/US 78 near Byhalia,"I-65/US 31 in Birmingham, Alabama",2012,current,"Serves two states: Mississippi, Alabama
+Planned associated routes: I-222, I-422"
+I‑24,316.36,509.13,"I-57 in Pulley's Mill, Illinois","I-75 in Chattanooga, Tennessee",1962,current,"Serves four states: Illinois, Kentucky, Tennessee, Georgia
+Associated route: I-124"
+I‑25,1062.77,"1,710.36","I-10/US 85/US 180 in Las Cruces, New Mexico","I-90/US 87 in Buffalo, Wyoming",1957,current,"Serves three states: New Mexico, Colorado, Wyoming
+Associated route: I-225"
+I‑26,305.62,491.85,"US 11W in Kingsport, Tennessee","US 17 in Charleston, South Carolina",1960,current,"Serves three states: Tennessee, North Carolina, South Carolina
+Associated routes: I-126, I-526"
+I‑27,124.13,199.77,"US 87/Loop 289 in Lubbock, Texas","I-40/US 87/US 287 in Amarillo, Texas",1969,current,"Texas only
+Associated routes: none"
+I‑29,750.58,"1,207.94","I-35/I-70 in Kansas City, Missouri","US 81 and PTH 29 at Canadian border in Pembina, North Dakota",1958,current,"Serves four states: Missouri, Iowa, South Dakota, North Dakota
+Associated routes: I-129, I-229"
+I‑30,366.76,590.24,"I-20 in Fort Worth, Texas","I-40/US 65/US 67/US 167 in North Little Rock, Arkansas",1957,current,"Serves two states: Texas, Arkansas
+Associated routes: I-430, I-530, I-630"
+I‑35,1569.06,"2,525.16","US 83/SH 359/BS I-35 and MX-85 at Mexican border in Laredo, Texas","MN 61/LSCT/26th Avenue in Duluth, Minnesota",1956,current,"Serves six states: TX, OK, KS, MO, IA, MN
+Associated routes: I-35E, I-35W, I-135, I-235, I-335, I-435, I-535, I-635"
+I‑37,143,230.14,"US 181 in Corpus Christi, Texas","I-35/US 281 in San Antonio, Texas",1959,current,"Texas only
+Associated routes: none"
+I‑39,306.14,492.68,"I-55 in Normal, Illinois","WIS 29/US 51 in Wausau, Wisconsin",1984,current,"Serves two states: Illinois, Wisconsin
+Associated routes: none"
+I‑40,2555.10,"4,112.03","I-15 in Barstow, California","US 117/NC 132 in Wilmington, North Carolina",1964,current,"Serves eight states: CA, AZ, NM, TX, OK, AR, TN, NC
+Associated routes: I-140, I-240, I-440, I-540, I-640, I-840"
+I‑41,176.33,283.78,"I-94/US 41 in Russell, Illinois","I-43 in Howard, Wisconsin",2015,current,"Serves two states:
+Illinois, Wisconsin
+Associated routes: none"
+I‑43,191.55,308.27,"I-39/I-90 in Beloit, Wisconsin","I-41/US 41/US 141 in Howard, Wisconsin",1981,current,"Wisconsin only
+Associated routes: none"
+I‑44,633.79,"1,019.99","US 82/US 277/US 281/US 287 in Wichita Falls, Texas","I-70 in St. Louis, Missouri",1958,current,"Serves three states: Texas, Oklahoma, Missouri
+Associated routes: I-244, I-444"
+I‑45,284.91,458.52,"SH 87 in Galveston, Texas","I-30 in Dallas, Texas",1971,current,"Texas only
+Associated route: I-345"
+I‑49,388.25,624.83,"I-10 in Lafayette, Louisiana","I-435 in Kansas City, Missouri",1984,current,"Serves three states: Louisiana, Arkansas, Missouri
+Associated routes: none"
+I‑55,964.25,"1,551.81","I-10 in LaPlace, Louisiana","US 41 in Chicago, Illinois",1960,current,"Serves six states: LA, MS, TN, AR, MO, IL
+Associated routes: I-155, I-255, I-355; I-555"
+I‑57,386.12,621.4,"I-55 in Miner, Missouri","I-94 in Chicago, Illinois",1965,current,"Serves two states: Missouri, Illinois. Planned in 1 more: Arkansas
+Associated routes: none"
+I‑59,445.23,716.53,"I-10/I-12 in Slidell, Louisiana","I-24 in Lookout Mountain, Georgia",1960,current,"Serves four states: Louisiana, Mississippi, Alabama, Georgia
+Associated routes: I-359, I-459, I-759"
+I‑64,953.74,"1,534.90","I-70 in Wentzville, Missouri","I-264/I-664 in Chesapeake, Virginia",1961,current,"Serves six states: MO, IL, IN, KY, WV, VA
+Associated routes: I-264, I-464, I-564, I-664"
+I‑65,887.3,"1,427.97","I-10 in Mobile, Alabama","I-90, US-12, US-20 in Gary, Indiana",1958,current,"Serves four states: Alabama, Tennessee, Kentucky, Indiana
+Associated routes: I-165, I-265, I-465, I-565, I-865"
+I‑66,76.28,122.76,"I-81 in Front Royal, Virginia","US 29 in Washington, D.C.",1982,current,"Serves District of Columbia and one state: Virginia
+Associated routes: None, had one proposed auxiliary route, I-266, but was cancelled due to freeway revolts."
+I‑68,112.9,181.7,"I-79 in Morgantown, West Virginia","I-70 in Hancock, Maryland",1991,current,"Serves two states: West Virginia, Maryland
+Associated routes: None"
+I‑69,705.4,"1,135.23","I-69E/US 77 & I-69W/US 59 in Victoria, Texas (future)","Hwy 402 at Canadian border in Port Huron, Michigan",1957,current,"Unfinished Texas section: Rosenberg (US-59/Spur 529) to Splendora (US 59/Mandell Road) Unfinished Mississippi-Tennessee section: Banks, Mississippi (MS 304/MS 713) toFrayser, Tennessee (US 51/TN 3) Unfinished Indiana section: Bloomington, Indiana to Indianapolis, IndianaServes six states: TX, MS, TN, KY, IN, MI. Planned/started in 2 more: LA, AR
+Associated routes: I-69C, I-69E, I-69W, I-169, I-269, I-369, I-469; Planned: I-169 in Tennessee, I-369 in Kentucky"
+I‑70,2153.43,"3,465.61","I-15 in Cove Fort, Utah","Park and ride in Baltimore, Maryland",1956,current,"Serves 10 states: UT, CO, KS, MO, IL, IN, OH, WV, PA, MD
+Associated routes: I-170, I-270, I-370, I-470, I-670"
+I‑71,343.78,553.26,"I-64 in Louisville, Kentucky","I-90 in Cleveland, Ohio",1959,current,"Serves two states: Kentucky, Ohio
+Associated routes: I-271, I-471"
+I‑72,179.29,288.54,"US 61 in Hannibal, Missouri","I-57 in Champaign, Illinois",1970,current,"Serves two states: Missouri, Illinois
+Associated route: I-172"
+I‑73,82.4,132.6,"US 220 near Ellerbe, North Carolina","I‑840/Bryan Boulevard in Greensboro, North Carolina",1997,current,"North Carolina only
+Associated routes: none"
+I‑74,440.91,709.58,"I-80 in Bettendorf, Iowa","NC 41 near Lumberton, North Carolina",1974,current,"Serves six states: IA, IL, IN, OH, NC
+Associated routes: I-474"
+I‑75,1786.47,"2,875.04","SR 826 near Hialeah, Florida","Sault Ste. Marie, Michigan (Canada)",1958,current,"Serves six states: FL, GA, TN, KY, OH, MI
+Associated routes: I-175, I-275, I-375, I-475, I-575, I-675"
+I‑76,187.34,301.49,"West Denver, Colorado (I-70)","Big Springs, Nebraska (I-80)",1975,current,"Serves two states: Colorado, Nebraska
+Associated routes: none"
+I‑76,434.36,699.03,"East Westfield Center, Ohio (I-71)","Bellmawr, New Jersey (I-295)",1976,current,"Serves three states: Ohio, Pennsylvania, New Jersey
+Associated routes: I-176, I-276, I-376, I-476, I-676; Future: I-576"
+I‑77,610.1,981.86,"Columbia, South Carolina (I-26)","Cleveland, Ohio (I-90)",1958,current,"Serves five states: South Carolina, North Carolina, Virginia, West Virginia, Ohio
+Associated route: I-277"
+I‑78,143.56,231.04,"Union Township, Pennsylvania (I-81)",New York City,1957,current,"Serves three states: Pennsylvania, New Jersey, New York
+Associated routes: I-278, I-478, I-678, I-878"
+I‑79,343.24,552.39,"Charleston, West Virginia (I-77)","Erie, Pennsylvania (PA-5)",1967,current,"Serves two states: West Virginia, Pennsylvania
+Associated routes: I-279, I-579"
+I‑80,2899.54,"4,666.36","San Francisco, California (US 101)","Teaneck, New Jersey (I-95)",1956,current,"Serves 11 states: CA, NV, UT, WY, NE, IA, IL, IN, OH, PA, NJ
+Associated routes: I-180, I-238 I-280, I-380, I-480, I-580, I-680, I-780, I-880, I-980"
+I‑81,854.89,"1,375.81","Dandridge, Tennessee (I-40)","Fisher's Landing, New York (Canada)",1961,current,"Serves six states: TN, VA, WV, MD, PA, NY
+Associated routes: I-381, I-481, I-581, I-781"
+I‑82,143.58,231.07,"Ellensburg, Washington (I-90)","Hermiston, Oregon (I-84)",1956,current,"Serves two states: Washington, Oregon
+Associated route: I-182"
+I‑83,85.3,137.3,"Baltimore, Maryland","Harrisburg, Pennsylvania (I-81)",1959,current,"Serves two states: Maryland, Pennsylvania
+Associated route: I-283"
+I‑84,769.62,"1,238.58","West Portland, Oregon (I-5)","Echo, Utah (I-80)",1980,current,"Serves three states: Oregon, Idaho, Utah
+Associated route: I-184"
+I‑84,232.4,374,"East Scranton, Pennsylvania (I-81)","Sturbridge, Massachusetts (I-90)",1963,current,"Serves four states: Pennsylvania, New York, Connecticut, Massachusetts
+Associated routes: I-384, I-684"
+I‑85,668.75,"1,076.25","Montgomery, Alabama (I-65)","Petersburg, Virginia (I-95)",1958,current,"Serves five states: Alabama, Georgia, South Carolina, North Carolina, Virginia
+Associated routes: I-185, I-285, I-385, I-485, I-585, I-785, I-985; Planned: I-685"
+I‑86,62.85,101.15,"West Heyburn, Idaho (I-84)","Pocatello, Idaho (I-15)",1980,current,"Idaho only
+Associated routes: none"
+I‑86,183.56,295.41,"East Erie, Pennsylvania (I-90)","Windsor, New York (NY 79)",1999,current,"Serves two states: Pennsylvania, New York
+Associated routes: none"
+I‑87,10.4,16.7,"Raleigh, North Carolina (I-440/US 64/US 264)","Wendell, North Carolina (US 64/US 264)",2017,current,"North Carolina only
+Associated routes: None, will eventually have one spur route, I-587."
+I‑87,333.49,536.7,New York City (I-278),"Champlain, New York (A-15 at Canadian border)",1957,current,"New York only
+Associated routes: I-287, I-587, I-787"
+I‑88,140.6,226.3,"West Barstow, Illinois (I-80)","Hillside, Illinois (I-290)",1987,current,"Illinois only
+Associated routes: none"
+I‑88,117.75,189.5,"East Binghamton, New York (I-81)","Schenectady, New York (I-90)",1968,current,"New York only
+Associated routes: none"
+I‑89,191.12,307.58,"Bow, New Hampshire (I-93)","Highgate Springs, Vermont (Route 133 at Canadian border/future A-35)",1960,current,"Serves two states: New Hampshire, Vermont
+Associated route: I-189"
+I‑90,3020.44,"4,860.93","Seattle, Washington (WA 519)","Boston, Massachusetts (MA 1A)",1956,current,"Serves 13 states: WA, ID, MT, WY, SD, MN, WI, IL, IN, OH, PA, NY, MA
+Associated routes: I-190, I-290, I-390, I-490, I-590, I-690, I-790, I-890, I-990"
+I‑91,290.37,467.31,"New Haven, Connecticut/North Haven, Connecticut (I-95)","Derby Line, Vermont (A-55 at Canadian border)",1958,current,"Serves three states: Connecticut, Massachusetts, Vermont
+Associated routes: I-291, I-391, I-691"
+I‑93,189.95,305.69,"Canton, Massachusetts (I-95)","St. Johnsbury, Vermont (I-91)",1957,current,"Serves three states: Massachusetts, New Hampshire, Vermont
+Associated routes: I-293, I-393"
+I‑94,1585.20,"2,551.13","Billings, Montana (I-90)","Port Huron, Michigan (Hwy 402 at Canadian border)",1956,current,"Serves seven states: MT, ND, MN, WI, IL, IN, MI
+Associated routes: I-194, I-294, I-394, I-494, I-694, I-794, I-894"
+I‑95,1925.74,"3,099.18","US 1 in Miami, Florida","NB 95 at Canadian border in Houlton, Maine",1957,current,"Serves DC and 15 states: FL, GA, SC, NC, VA, MD, DE, PA, NJ, NY, CT, RI, MA, NH, ME
+Associated routes: I-195, I-295, I-395, I-495, I-595, I-695, I-795, I-895"
+I‑96,192.06,309.09,"Muskegon, Michigan (US 31)","Detroit, Michigan (I-75)",1959,current,"Michigan only
+Associated routes: I-196, I-296, I-496, I-696"
+I‑97,17.62,28.36,"Annapolis, Maryland (US 50)","Baltimore, Maryland (I-695/I-895)",1987,current,"Maryland only
+Associated routes: None, had 2 auxiliary routes planned, I-197 and I-297, but they were replaced by I-595, parts of I-68, and MD Route 3."
+I‑99,98.86,159.1,"Bedford, Pennsylvania (I-70/I-76)","Painted Post, New York (I-86)",1998,current,"Unfinished Pennsylvania section: Bellefonte, Pennsylvania (I-80) to New York border near Lawrenceville, Pennsylvania (US 15)Serves two states: Pennsylvania, New York
+Associated routes: none"
