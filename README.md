@@ -1,5 +1,5 @@
 Gabriel Hartman
 
-Initial Final Project Proposal for CMPS165
+CMPS 165 Final Project
 
 https://ghartman1620.github.io/interstate-highway-165-final/
