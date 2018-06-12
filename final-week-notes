@@ -1,0 +1,25 @@
+Questions
+
+1. I imagine highway extent interactivity right now shows highways that are in progress and highways that are complete on the map for the year. What color
+should be used to distinguish between them?
+
+2. Where should the highway description tooltip go?
+
+3. Is it worth my time to try to do budget? If so, stacked bar or sankey diagram?
+
+4. Should I go acquire more recent data (the relevant publication publishes up to 2016, but these years were all in one place very conveniently)? Is it higher priority than #3?
+
+5. Layout? If I add another viz for budget (either sankey or stacked) what should layout be?
+
+tooltips - increase line spacing (css line spacing)
+d3 format the numbers to use commas
+
+highlighted color - use something bright
+
+ask professor:
+position of slider
+color
+layout
+if haven't done fourth yet on budget, is it necessary? layout on it? 
+tooltip - why it's difficult to do tooltip on map, is the tooltip on scatterplot sufficient?
+ask if more recent data (it exists) is required
