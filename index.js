@@ -142,7 +142,6 @@ d3.json("usroads.json", function(error, usroads) {
             d.otherHighwayFatality = (d.otherNatlHighwayFatalities + d.nonFedAidFatalities + d.otherFedAidFatalities);
 
             d.otherFatalityRate = d.otherHighwayFatality/d.otherHighwayVmt;
-            console.log(d.interstateFatalityRate);
         })
         
         slider.on('onchange', val => {
