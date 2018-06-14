@@ -1,6 +1,6 @@
 body{
-    margin:40px auto;
-    max-width:90%;
+    /*margin:40px auto;
+    max-width:90%;*/
     line-height:1.6;
     font-size:18px;
     color:#444;
@@ -17,12 +17,7 @@ h1,h2,h3{
     max-width: 50%;
     margin: auto;
 }
-#map {
-    margin-left: 10%;
-}
-#graph {
-    margin-left: 12%;
-}
+
 
 #slider {
     margin-left: 35%;
@@ -31,7 +26,7 @@ h1,h2,h3{
     margin-left: 35%;
 }
 .date {
-    font-size: 20pt;
+    font-size: 20pt
 }
 
 
@@ -47,28 +42,24 @@ h1,h2,h3{
 .beltway { stroke: #737373; }
 .ferry-route { stroke: #4393c3; stroke-width: 1.5px; }
 
-.major-highway:hover {
-    stroke: #00FF00
-}
-
 .tooltip {
     
 }
 .tooltip rect {
-    fill: lightblue;
+    fill: white;
 /*    opacity: .3;*/
     stroke-width: 2;
     stroke: rgb(0,0,0);
 }
 
-#scatterplot {
-    margin-left: 35%;
-}
+
 
 .columns {
     column-count: 4;
+    background-color: #f4f7f9;
 }
 .sources {
     text-align: center;
-    height: 500px;
+    height: 325px;
+    
 }
