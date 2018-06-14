@@ -2,25 +2,25 @@ const totalMapWidth = 2000;
 const totalMapHeight = 900;
 
 
-const mapX = 675;
+const mapX = 450;
 const mapY = 0;
 const mapWidth = 500;
 const mapHeight = 350;
 
-const graphX = 175;
+const graphX = 100;
 const graphY = 437;
-const graphWidth = 800;
+const graphWidth = 750;
 const graphHeight = 400;
 const graphPadding = 50;
 
 
-const plotX = 1000;
+const plotX = 850;
 const plotY = 437;
 const plotWidth = 600;
 const plotHeight = 400;
 const plotPadding = 50;
 
-const sliderX = 715;
+const sliderX = 500;
 const sliderY = 375;
 
 
