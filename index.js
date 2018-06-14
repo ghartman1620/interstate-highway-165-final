@@ -244,7 +244,7 @@ d3.json("usroads.json", function(error, usroads) {
                 });
         
         var xBarAxis = d3.axisTop(xBarScale0)
-                .tickValues([1970, 1975, 1980, 1985, 1990, 1995]);
+                .tickValues(fatalities.filter(d => d.year%5 === 0).map(d => d.year));
         var yBarAxis = d3.axisRight(yBarScale)
 
 
